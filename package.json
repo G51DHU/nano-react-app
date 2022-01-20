@@ -1,0 +1,36 @@
+{
+  "name": "@g51dhu/nano-preact-app",
+  "version": "1.0.2",
+  "description": "Installs nano-preact-app template.",
+  "homepage": "https://github.com/g51dhu/nano-preact-app",
+  "url" : "https://github.com/g51dhu/nano-preact-app",
+  "keywords": [
+    "nano",
+    "preact",
+    "app",
+    "light",
+    "lightweight",
+    "react",
+    "dev",
+    "development"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "G51DHU",
+  "license": "MIT",
+  "bin": {
+    "nano-preact-app": "./index.js"
+  },
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "command-exists": "^1.2.9",
+    "download-git-repo": "^3.0.2",
+    "ora": "^6.0.1",
+    "prompt": "^1.2.1",
+    "validate-npm-package-name": "^3.0.0",
+    "yargs": "^17.3.1"
+  }
+}
