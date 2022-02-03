@@ -10,15 +10,15 @@ import validateProjectName from "validate-npm-package-name"
 
 yargs(hideBin(process.argv))
     .usage("")
-    .usage("Usage: nano-preact-app               \n   - Starts nano-preact-app tool")
-    .usage("Usage: nano-preact-app init          \n   - Downloads nano-preact-app template in current directory.")
-    .usage("Usage: nano-preact-app <project-name>\n   - Creates directory using name given then, downloads nano-preact-app template in that directory.")
+    .usage("Usage: nano-react-app               \n   - Starts nano-react-app tool")
+    .usage("Usage: nano-react-app init          \n   - Downloads nano-react-app template in current directory.")
+    .usage("Usage: nano-react-app <project-name>\n   - Creates directory using name given then, downloads nano-react-app template in that directory.")
     .argv;
 
 const args = process.argv.slice(2)
 const working_dir_path = process.cwd()
 const current_dir = working_dir_path.split("/").slice(-1)[0]
-const template_github_link = "g51dhu/nano-preact-app-template-js"
+const template_github_link = "g51dhu/nano-react-app-template-js"
 const package_managers = [ "pnpm", "yarn", "npm"]
 
 const spinner_download = ora("Downloading")
@@ -41,7 +41,7 @@ for (const index in package_managers){
     }
 }
 
-console.log("\n   "+chalk.bgMagenta("       NANO PREACT APP       ")+"   ");
+console.log("\n   "+chalk.bgMagenta("       NANO REACT APP       ")+"   ");
 console.log("-----------------------------------")
 
 // need to pass "spinner_download" instance along, 

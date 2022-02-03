@@ -1,30 +1,29 @@
-# Nano Preact App
+# Nano React App
 
 Lightweight version of [create-react-app](https://create-react-app.dev/).
 
-Uses [Vite](https://vitejs.dev/) and [Preact](https://preactjs.com/). Instead of [Webpack](https://webpack.js.org/) and [React](https://reactjs.org/).
+Uses [Vite](https://vitejs.dev/) instead of [Webpack](https://webpack.js.org/).
 
-This is the tool to download the [template project](https://github.com/g51dhu/nano-preact-app-template-js) for nano-preact-app.
+This is the tool to download the [template project](https://github.com/g51dhu/nano-react-app-template-js) for nano-react-app.
 
 ---
 
 # Install
 
-1) Npm
-    - `npm i -g nano-preact-app`
-2) Pnpm
-    - `pnpm i -g @g51dhu/nano-preact-app`
+1) npm
+    - `npm i -g @g51dhu/nano-react-app`
+2) pnpm
+    - `pnpm i -g @g51dhu/nano-react-app`
 
 
 # Commands
 
-1) Starts nano-preact-app tool.
-    -   `nano-preact-app`
+1) Starts nano-react-app tool.
+    - `nano-react-app`
 
-2) Downloads nano-preact-app template in current directory.
-    - `nano-preact-app init`
+2) Downloads nano-react-app template in current directory.
+    - `nano-react-app init`
 
-3) Creates directory using name given then, downloads nano-preact-app template in that directory.
-    - `nano-preact-app <project-name>`
+3) Creates directory using name given then, downloads nano-react-app template in that directory.
+    - `nano-react-app <project-name>`
 
-# nano-preact-app
