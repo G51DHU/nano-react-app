@@ -5,8 +5,9 @@ import yargs from "yargs"
 import {hideBin} from "yargs/helpers"
 import gitClone from "download-git-repo"
 import readline from 'readline'
-import {execSync, exec} from 'child_process'
+import {execSync} from 'child_process'
 import validateProjectName from "validate-npm-package-name"
+import {packageInstall, packageDownloadFail} from "./funcs.js"
 
 yargs(hideBin(process.argv))
     .usage("")
@@ -41,20 +42,10 @@ for (const index in package_managers){
     }
 }
 
+
 console.log("\n   "+chalk.bgMagenta("       NANO REACT APP       ")+"   ");
 console.log("-----------------------------------")
 
-// need to pass "spinner_download" instance along, 
-// otherwise it dosent stop the spinner and causes error.
-function packageInstall(path, spinner_download){
-    spinner_download.succeed("Download Success.") 
-    spinner_install.start()
-    exec(`cd ${path} && ${existing_package_managers[0]} i`, ()=>{spinner_install.succeed("Packages installed."); console.log("-----------------------------------")})
-}
-
-function packageInstallFail(){
-    spinner_download.fail('Template download error.')
-}
 
 if (args[0] === "init"){
     console.log("      - Name : ", current_dir)
@@ -64,7 +55,7 @@ if (args[0] === "init"){
         console.log("-----------------------------------")
         spinner_download.start()
         gitClone(template_github_link, working_dir_path, function (err) {
-            err ? packageInstallFail() : packageInstall(working_dir_path, spinner_download)
+            err ? packageDownloadFail(spinner_download) : packageInstall(working_dir_path, current_dir, existing_package_managers, spinner_download, spinner_install)
         })
     }
     else if (validationAnswer["validForNewPackages"] === false){
@@ -80,7 +71,7 @@ else if(args.length > 0 ){
         console.log("-----------------------------------")
         spinner_download.start()
         gitClone(template_github_link, `${working_dir_path}/${args[0]}`, function (err) {
-            err ? packageInstallFail() : packageInstall(`${working_dir_path}"/"${args[0]}`, spinner_download)
+            err ? packageDownloadFail(spinner_download) : packageInstall(`${working_dir_path}/${args[0]}`, args[0],  existing_package_managers, spinner_download, spinner_install)
         })
     }
     else if (validationAnswer["validForNewPackages"] === false){
@@ -94,24 +85,26 @@ else {
         output: process.stdout
       });
     
-    rl.question('      - Name? : ', function (package_name) {
+    rl.question('      - Name? : ', function (project_name) {
         rl.question('      - Description? : ', function (package_description) {
             rl.question('      - Keywords? : ', function (package_keywords) {
                 
                 package_keywords = package_keywords.split(/\s*[,*]\s*/g)
-                const validationAnswer = validateProjectName(package_name)
+                const validationAnswer = validateProjectName(project_name)
 
                 if (validationAnswer["validForNewPackages"] === true){
                     console.log("-----------------------------------")
-
                     spinner_download.start()
-                    gitClone(template_github_link, `${working_dir_path}/${package_name}`, function (err) {
-                        err ? packageInstallFail() : packageInstall(`${working_dir_path}"/"${package_name}`, spinner_download)
+                    gitClone(template_github_link, `${working_dir_path}/${project_name}`, function (err) {
+                        err ? packageDownloadFail(spinner_download) : packageInstall(path =`${working_dir_path}/${project_name}`, project_name , existing_package_managers, spinner_download, spinner_install, package_description)
                     })
 
                 }
                 else if (validationAnswer["validForNewPackages"] === false){
-                    console.log(chalk.bgMagenta("Errors"),[validationAnswer["errors"], validationAnswer["warnings"]].filter(e => e !== undefined))
+                    console.log(
+                        chalk.bgMagenta("Errors"),
+                        [validationAnswer["errors"], validationAnswer["warnings"]].filter(e => e !== undefined)
+                    )
                     rl.close()
                 }
 
