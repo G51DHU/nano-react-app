@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "Installs nano-react-app template.",
   "homepage": "https://github.com/g51dhu/nano-react-app",
-  "url" : "https://github.com/g51dhu/nano-react-app",
+  "url": "https://github.com/g51dhu/nano-react-app",
   "keywords": [
     "nano",
     "preact",
@@ -30,7 +30,6 @@
     "command-exists": "^1.2.9",
     "download-git-repo": "^3.0.2",
     "ora": "^6.0.1",
-    "prompt": "^1.2.1",
     "validate-npm-package-name": "^3.0.0",
     "yargs": "^17.3.1"
   }
