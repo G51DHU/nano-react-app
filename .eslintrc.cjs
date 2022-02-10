@@ -1,6 +1,6 @@
 module.exports = {
   plugins:[
-    "snakecasejs"
+    'snakecasejs'
   ],
   env: {
     browser: true,
@@ -14,27 +14,27 @@ module.exports = {
     sourceType: 'module'
   },
   settings:{
-      "snakecasejs/whitelist": [
-        "hideBin",
-        "gitClone",
-        "validateProjectName",
-        "selectPackageManager",
-        "useGivenPkgMnger",
-        "existingPackageManagers",
-        "packageInstall",
-        "changePkg",
-        "changeIndexHtml",
-        "changePkgKeywords",
-        "bgMagenta",
-        "validForNewPackages",
-        "execSync",
-        "createInterface",
-        "readFileSync",
-        "writeFileSync",
-      ]
+    'snakecasejs/whitelist': [
+      'hideBin',
+      'gitClone',
+      'validateProjectName',
+      'selectPackageManager',
+      'useGivenPkgMnger',
+      'existingPackageManagers',
+      'packageInstall',
+      'changePkg',
+      'changeIndexHtml',
+      'changePkgKeywords',
+      'bgMagenta',
+      'validForNewPackages',
+      'execSync',
+      'createInterface',
+      'readFileSync',
+      'writeFileSync'
+    ]
   },
   rules: {
-    'camelcase': 'off',
-    "snakecasejs/snakecasejs": "error"
+    camelcase: 'off',
+    'snakecasejs/snakecasejs': 'error'
   }
 }
