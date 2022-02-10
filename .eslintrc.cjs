@@ -24,6 +24,7 @@ module.exports = {
         "packageInstall",
         "changePkg",
         "changeIndexHtml",
+        "changePkgKeywords",
         "bgMagenta",
         "validForNewPackages",
         "execSync",

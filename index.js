@@ -28,7 +28,6 @@ const working_dir_path = process.cwd()
 const current_dir = working_dir_path.split('/').slice(-1)[0]
 const template_github_link = 'g51dhu/nano-react-app-template-js'
 const chosen_package_manager = (argv['package-manager'] === undefined) ? selectPackageManager() : useGivenPkgMnger(argv['package-manager'])
-console.log(chosen_package_manager)
 const spinner_download = ora('Downloading')
 const spinner_install = ora('Installing packages.')
 spinner_download.indent = 6
@@ -76,7 +75,7 @@ if (args[0] === 'init') {
           console.log('-----------------------------------')
           spinner_download.start()
           gitClone(template_github_link, `${working_dir_path}/${project_name}`, function (err) {
-            err ? spinner_download.fail('Template download error.') : packageInstall(`${working_dir_path}/${project_name}`, project_name, chosen_package_manager, spinner_download, spinner_install, package_description)
+            err ? spinner_download.fail('Template download error.') : packageInstall(`${working_dir_path}/${project_name}`, project_name, chosen_package_manager, spinner_download, spinner_install, package_description, package_keywords)
           })
         } else if (validation_answer.validForNewPackages === false) {
           console.log(

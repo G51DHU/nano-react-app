@@ -44,10 +44,14 @@ export function existingPackageManagers () {
 
 // need to pass "spinner_download" instance along,
 // otherwise it dosent stop the spinner and causes error.
-export function packageInstall (path, project_name, chosen_pkg_mnger, spinner_download, spinner_install, package_description) {
+export function packageInstall (path, project_name, chosen_pkg_mnger, spinner_download, spinner_install, package_description, package_keywords) {
   spinner_download.succeed('Download Success.')
   changePkg(path, project_name, package_description)
   changeIndexHtml(path, project_name, package_description)
+  if (package_keywords !== undefined) {
+    console.log(package_keywords)
+    changePkgKeywords(path, package_keywords)
+  }
   spinner_install.start()
   exec(`cd ${path} && ${chosen_pkg_mnger} i`, () => {
     spinner_install.succeed('Packages installed.')
@@ -72,4 +76,16 @@ function changeIndexHtml (pkg_path, project_name, package_description = `This is
   let new_indexhtml_contents = indexhtml_contents.replace('React Vite Micro App', project_name)
   new_indexhtml_contents = new_indexhtml_contents.replace('Web site created using nano-react-app', package_description)
   fs.writeFileSync(indexhtml_path, new_indexhtml_contents, 'utf8')
+}
+
+function changePkgKeywords (pkg_path, package_keywords) {
+  const pkgjson_path = `${pkg_path}/package.json`
+  const pkgjson_contents = JSON.parse(fs.readFileSync(pkgjson_path, 'utf8'))
+  const new_pkgjson_contents = { ...pkgjson_contents, keywords: package_keywords }
+  const hi = fs.writeFileSync(
+    pkgjson_path,
+    JSON.stringify(new_pkgjson_contents, null, 2),
+    'utf8'
+  )
+  console.log(hi)
 }
