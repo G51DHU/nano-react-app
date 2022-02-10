@@ -49,7 +49,6 @@ export function packageInstall (path, project_name, chosen_pkg_mnger, spinner_do
   changePkg(path, project_name, package_description)
   changeIndexHtml(path, project_name, package_description)
   if (package_keywords !== undefined) {
-    console.log(package_keywords)
     changePkgKeywords(path, package_keywords)
   }
   spinner_install.start()
@@ -82,10 +81,9 @@ function changePkgKeywords (pkg_path, package_keywords) {
   const pkgjson_path = `${pkg_path}/package.json`
   const pkgjson_contents = JSON.parse(fs.readFileSync(pkgjson_path, 'utf8'))
   const new_pkgjson_contents = { ...pkgjson_contents, keywords: package_keywords }
-  const hi = fs.writeFileSync(
+  fs.writeFileSync(
     pkgjson_path,
     JSON.stringify(new_pkgjson_contents, null, 2),
     'utf8'
   )
-  console.log(hi)
 }
